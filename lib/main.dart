@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pizza_app/screens/App.dart';
 
 import 'package:pizza_app/screens/home.dart';
+import 'package:pizza_app/screens/listview.dart';
+import 'package:pizza_app/screens/listview2.dart';
 import 'package:pizza_app/screens/rowcolumn.dart';
 
 void main() {
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'My Diary',
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: Row1(),
+      home:Listview2() ,
     );  
   }
 }
