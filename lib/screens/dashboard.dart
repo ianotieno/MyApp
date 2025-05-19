@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -14,9 +15,15 @@ class Dashboard extends StatelessWidget {
         ),
         backgroundColor: Colors.blueGrey,
       ),
-      body: Image.asset(
-        'images/dashboard.png',
-        fit: BoxFit.cover,
+      body: Center(
+        child: IconButton(
+          icon: Icon(FontAwesomeIcons.house),
+          onPressed: () {
+        },
+        iconSize: 100,
+        color: Colors.blueGrey,
+        ),
+        
       ),
     );
   }
