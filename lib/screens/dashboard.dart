@@ -8,23 +8,30 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Dashboard',
-          style: TextStyle(fontSize: 30, color: Colors.white),
+      
+      body: Container(
+      
+        width: 350,
+        height: 250,
+        padding: EdgeInsets.all(20.0),
+        margin: EdgeInsets.all(20.0),
+        alignment: Alignment.bottomCenter,
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          
+          //borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.black, width: 2),
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: AssetImage('images/dashboard.png'),
+            fit: BoxFit.cover,
+          ),
         ),
-        backgroundColor: Colors.blueGrey,
+       
       ),
-      body: Center(
-        child: IconButton(
-          icon: Icon(FontAwesomeIcons.house),
-          onPressed: () {
-        },
-        iconSize: 100,
-        color: Colors.blueGrey,
-        ),
+
         
-      ),
+      
     );
   }
 }
