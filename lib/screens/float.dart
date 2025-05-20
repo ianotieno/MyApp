@@ -6,24 +6,38 @@ class Float extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,  
     floatingActionButton: FloatingActionButton(
       onPressed: () {},
      
-      backgroundColor: Colors.black12,
+      backgroundColor:Colors.blue,
       foregroundColor: Colors.yellow,
-       elevation: 10,
-       shape: BeveledRectangleBorder(
-          borderRadius: BorderRadius.circular(40),
-          side: BorderSide(
-            color: Colors.yellow,
-            width: 2.0,
-            style: BorderStyle.solid
-          )
-       ),
-       child: Icon(Icons.add),
+       shape: CircleBorder(
       
+       ),
+      
+      child: Icon(Icons.add),
       
     ),
+   bottomNavigationBar: BottomNavigationBar(
+     items: [
+       BottomNavigationBarItem(
+         icon: Icon(Icons.home),
+         label: 'Home',
+       ),
+       BottomNavigationBarItem(
+         icon: Icon(Icons.shopping_cart),
+         label: 'Shop',
+       ),
+        BottomNavigationBarItem(
+         icon: Icon(Icons.favorite),
+         label: 'Favorite',
+       )
+     ],
+     
+   ),
+ 
+   
 
     );
   }
