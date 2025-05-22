@@ -13,8 +13,8 @@ class Custom extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ListTileWidget(subtitle: "Mouse", title: "A4Tech",)
-       
+          ListTileWidget(subtitle: "Mouse", title: "A4Tech",),
+          ListTileWidget(subtitle: "Monitor", title: "24 Inch",iconColor: Colors.brown,leadingIcon: Icons.monitor,listtileColor: Colors.pink,trailingIcon: Icons.ac_unit_sharp,),
         ],
       )
     );
