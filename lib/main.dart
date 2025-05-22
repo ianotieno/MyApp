@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_app/screens/App.dart';
+import 'package:pizza_app/screens/custom.dart';
 import 'package:pizza_app/screens/float.dart';
 
 import 'package:pizza_app/screens/home.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'My Diary',
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home:Stack1() ,
+      home:Custom(),
     );  
   }
 }
