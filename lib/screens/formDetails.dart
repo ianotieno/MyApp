@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DetailsForm extends StatelessWidget {
-   DetailsForm({super.key,required this.productName});
+   DetailsForm({super.key,required this.productName, required this.productDes});
   String productName;
+  String productDes;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +23,7 @@ class DetailsForm extends StatelessWidget {
             ListTile(
               leading:Icon(Icons.account_balance_wallet_outlined),
               title:Text (productName) ,
+              subtitle: Text(productDes),
             ),
 
           ],

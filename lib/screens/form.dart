@@ -9,12 +9,17 @@ class MyForm extends StatefulWidget {
 }
 
 class _MyFormState extends State<MyForm> {
-  var _productName;
+  var _productName,
+      _productDes; // Declare variables to hold the text field values
   final _productController = TextEditingController();
+  final _productDesController = TextEditingController();
+
+   bool? _checkBox = false;
   @override
   void initState() {
     super.initState();
     _productController.addListener(_updateText);
+    _productDesController.addListener(_updateText);
   }
 
   @override
@@ -26,6 +31,7 @@ class _MyFormState extends State<MyForm> {
   void _updateText() {
     setState(() {
       _productName = _productController.text;
+      _productDes = _productDesController.text;
     });
   }
 
@@ -37,6 +43,7 @@ class _MyFormState extends State<MyForm> {
         padding: EdgeInsets.all(20.0),
         child: ListView(
           children: [
+            const SizedBox(height: 20),
             TextFormField(
               controller: _productController,
               decoration: InputDecoration(
@@ -45,15 +52,22 @@ class _MyFormState extends State<MyForm> {
                 border: OutlineInputBorder(),
               ),
             ),
+            const SizedBox(height: 20),
             TextFormField(
-              controller: _productController,
+              controller: _productDesController,
               decoration: InputDecoration(
-                labelText: "Product Name",
-                prefixIcon: Icon(Icons.verified_user_outlined),
+                labelText: "Product Description",
+                prefixIcon: Icon(Icons.description_outlined),
                 border: OutlineInputBorder(),
               ),
             ),
-
+            Checkbox(
+              tristate: true,
+              value: _checkBox, onChanged: (val) {
+              setState(() {
+                _checkBox = val;
+              });
+            }),
             myButt(context),
           ],
         ),
@@ -68,7 +82,8 @@ class _MyFormState extends State<MyForm> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return DetailsForm(productName: _productController.text);
+              return DetailsForm(productName: _productController.text,
+                  productDes: _productDesController.text);
             },
           ),
         );
