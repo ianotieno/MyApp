@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_app/screens/formDetails.dart';
 
+enum ProductTypeEnum { Downloadable, Deliverable, }
 class MyForm extends StatefulWidget {
   const MyForm({super.key});
 
@@ -13,8 +14,9 @@ class _MyFormState extends State<MyForm> {
       _productDes; // Declare variables to hold the text field values
   final _productController = TextEditingController();
   final _productDesController = TextEditingController();
+  ProductTypeEnum? _productTypeEnum;
 
-   bool? _checkBox = false;
+   bool? _listTileChecked = false;
   @override
   void initState() {
     super.initState();
@@ -61,13 +63,53 @@ class _MyFormState extends State<MyForm> {
                 border: OutlineInputBorder(),
               ),
             ),
-            Checkbox(
+           SizedBox(height: 5,),
+            CheckboxListTile(
+              tileColor: Colors.deepPurple.shade50,
+              contentPadding: EdgeInsets.all(0),
+              value: _listTileChecked, 
+              onChanged: (val){setState(() {
+                _listTileChecked = val;
+                
+              });},
+              
               tristate: true,
-              value: _checkBox, onChanged: (val) {
-              setState(() {
-                _checkBox = val;
-              });
-            }),
+              title: Text("Top Product"),
+              subtitle: Text("This is a top product"),
+              controlAffinity: ListTileControlAffinity.leading,
+            ),
+            SizedBox(height: 5,),
+            Row(children: [
+                Expanded(
+                  child: RadioListTile<ProductTypeEnum>(
+                                contentPadding: EdgeInsets.all(0),
+                                value: ProductTypeEnum.Deliverable,
+                                tileColor: Colors.deepPurple.shade50,
+                               groupValue: _productTypeEnum, 
+                                title: Text(ProductTypeEnum.Deliverable.name),
+                               onChanged: (value) {
+                                setState(() {
+                  _productTypeEnum = value;
+                                });
+                              }),
+                ),
+                SizedBox(width: 5,),
+            Expanded(
+              child: RadioListTile<ProductTypeEnum>(
+                contentPadding: EdgeInsets.all(0),
+                value: ProductTypeEnum.Downloadable, 
+                groupValue: _productTypeEnum,
+                tileColor: Colors.deepPurple.shade50,
+                title: Text("Downloadable"),
+                 onChanged: (value) {
+                setState(() {
+                  _productTypeEnum = value;
+                });
+                
+              }),
+            ),
+            ],),
+            SizedBox(height: 20),
             myButt(context),
           ],
         ),
