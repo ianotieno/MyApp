@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pizza_app/models/product_model.dart';
 
 class DetailsForm extends StatelessWidget {
-   DetailsForm({super.key,required this.productName, required this.productDes});
-  String productName;
-  String productDes;
+  DetailsForm({super.key, required this.productDetails});
+  ProductDetails productDetails;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,15 +17,14 @@ class DetailsForm extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding:EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: ListView(
           children: [
             ListTile(
-              leading:Icon(Icons.account_balance_wallet_outlined),
-              title:Text (productName) ,
-              subtitle: Text(productDes),
+              leading: Icon(Icons.account_balance_wallet_outlined),
+              title: Text(""),
+              subtitle: Text(""),
             ),
-
           ],
         ),
       ),
