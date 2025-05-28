@@ -12,51 +12,35 @@ class MyForm extends StatefulWidget {
 
 class _MyFormState extends State<MyForm> {
   _MyFormState() {
-    _selectedVal = _productSizeList[0]; // Initialize with the first value
+    _selectedVal = _productSizeList[0];
   }
-  var _productName,
-      _productDes; // Declare variables to hold the text field values
+
   final _productController = TextEditingController();
   final _productDesController = TextEditingController();
   final _productSizeList = ["Small", "Medium", "Large"];
-  String? _selectedVal = "";
+  String _selectedVal = "";
   ProductTypeEnum? _productTypeEnum;
   final _formKey = GlobalKey<FormState>();
-
   ProductDetails productDetails = ProductDetails();
-
   bool? _listTileChecked = false;
-  @override
-  void initState() {
-    super.initState();
-    _productController.addListener(_updateText);
-    _productDesController.addListener(_updateText);
-  }
 
   @override
   void dispose() {
     _productController.dispose();
+    _productDesController.dispose();
     super.dispose();
-  }
-
-  void _updateText() {
-    setState(() {
-      _productName = _productController.text;
-      _productDes = _productDesController.text;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Product Form "), centerTitle: true),
+      appBar: AppBar(title: Text("Product Form"), centerTitle: true),
       body: Container(
         padding: EdgeInsets.all(20.0),
         child: ListView(
           children: [
             const Text("Add Product details in the form below"),
             const SizedBox(height: 20),
-
             Form(
               key: _formKey,
               child: Column(
@@ -65,8 +49,8 @@ class _MyFormState extends State<MyForm> {
                     validator: (val) {
                       if (val == null || val.isEmpty) {
                         return "please enter some text";
-                      } else
-                        null;
+                      }
+                      return null;
                     },
                     controller: _productController,
                     decoration: InputDecoration(
@@ -80,8 +64,8 @@ class _MyFormState extends State<MyForm> {
                     validator: (val) {
                       if (val == null || val.isEmpty) {
                         return "please enter some text";
-                      } else
-                        null;
+                      }
+                      return null;
                     },
                     controller: _productDesController,
                     decoration: InputDecoration(
@@ -100,7 +84,6 @@ class _MyFormState extends State<MyForm> {
                         _listTileChecked = val;
                       });
                     },
-
                     tristate: true,
                     title: Text("Top Product"),
                     subtitle: Text("This is a top product"),
@@ -132,17 +115,15 @@ class _MyFormState extends State<MyForm> {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 20),
                   DropdownButtonFormField(
                     value: _selectedVal,
-                    items:
-                        _productSizeList.map((e) {
-                          return DropdownMenuItem(value: e, child: Text(e));
-                        }).toList(),
+                    items: _productSizeList.map((e) {
+                      return DropdownMenuItem(value: e, child: Text(e));
+                    }).toList(),
                     onChanged: (val) {
                       setState(() {
-                        _selectedVal = val;
+                        _selectedVal = val!;
                       });
                     },
                     icon: Icon(
@@ -160,7 +141,6 @@ class _MyFormState extends State<MyForm> {
                       ),
                     ),
                   ),
-
                   SizedBox(height: 20),
                   myButt(context),
                 ],
@@ -176,8 +156,19 @@ class _MyFormState extends State<MyForm> {
     return OutlinedButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          productDetails.productName = _productController.text;
-          productDetails.productdetails = _productDesController.text;
+          ProductDetails productDetails = ProductDetails(
+            productName: _productController.text,
+            productdetails: _productDesController.text,
+            productSize: _selectedVal,
+            isTopProduct: _listTileChecked ?? false,
+            productType: _productTypeEnum ?? ProductTypeEnum.Deliverable,
+          );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailsForm(productDetails: productDetails),
+            ),
+          );
         }
       },
       style: OutlinedButton.styleFrom(minimumSize: const Size(200, 50)),
