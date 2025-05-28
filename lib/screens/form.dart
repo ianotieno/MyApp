@@ -164,11 +164,11 @@ class _MyFormState extends State<MyForm> {
             productType: _productTypeEnum ?? ProductTypeEnum.Deliverable,
           );
           Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => DetailsForm(productDetailsList: [productDetails]),
-  ),
-);
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailsForm(productDetails: productDetails),
+            ),
+          );
         }
       },
       style: OutlinedButton.styleFrom(minimumSize: const Size(200, 50)),

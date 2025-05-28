@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pizza_app/models/product_model.dart';
 
 class DetailsForm extends StatelessWidget {
-  final List<ProductDetails> productDetailsList;
+  final ProductDetails productDetails;
 
-  const DetailsForm({super.key, required this.productDetailsList});
+  const DetailsForm({super.key, required this.productDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +30,9 @@ class DetailsForm extends StatelessWidget {
         elevation: 3,
         shadowColor: theme.colorScheme.shadow.withOpacity(0.5),
       ),
-      body: ListView.builder(
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-        itemCount: productDetailsList.length,
-        itemBuilder: (context, index) => _buildProductCard(context, productDetailsList[index]),
+        child: _buildProductCard(context, productDetails),
       ),
     );
   }
